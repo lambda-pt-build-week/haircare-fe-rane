@@ -14,7 +14,7 @@ class PostContainer extends Component {
   componentDidMount() {
     axios
       .get(
-        `${UNSPLASH_API}photos/random/?query=hairstyle&&count=10&&client_id=${
+        `${UNSPLASH_API}photos/random/?query=hairstyle&&count=50&&client_id=${
           keys.unsplashAccessKey
         }`
       )
@@ -41,7 +41,9 @@ export default PostContainer;
 
 const PostGrid = styled.div`
   display: grid;
-  grid-gap: 15px;
+  grid-gap: 0 5px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  border: 2px solid black;
+  //border: 2px solid black;
+  grid-auto-rows: 10px;
+  height: 100vh;
 `;
