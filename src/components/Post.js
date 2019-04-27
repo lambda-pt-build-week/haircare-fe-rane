@@ -24,17 +24,21 @@ class Post extends Component {
   render() {
     return (
       <div
+        onMouseEnter={e => this.setState({ hover: true })}
+        onMouseLeave={e => this.setState({ hover: false })}
         style={{
           gridRowEnd: `span ${this.state.spans}`
         }}
       >
         <PostImage ref={this.imageRef} src={this.props.imageURL} alt="image" />
-        <FooterWrapper>
-          <div>
-            <FaHeart /> {this.props.imageLikes}
-          </div>
-          <div>{this.props.username}</div>
-        </FooterWrapper>
+        {this.state.hover && (
+          <FooterWrapper>
+            <div>
+              <FaHeart /> {this.props.imageLikes}
+            </div>
+            <div>{this.props.username}</div>
+          </FooterWrapper>
+        )}
       </div>
     );
   }
@@ -51,10 +55,16 @@ const PostImage = styled.img`
 `;
 
 const FooterWrapper = styled.div`
-  margin: -30px 10px;
+  margin: -30px auto;
   justify-content: space-between;
   display: flex;
   color: white;
   font-size: 16px;
   font-weight: bolder;
+  width: 90%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: relative;
+  padding: 5px;
+  z-index: 10;
 `;
