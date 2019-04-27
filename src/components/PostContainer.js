@@ -32,7 +32,12 @@ class PostContainer extends Component {
       <PostGrid>
         {this.state.images &&
           this.state.images.map(image => (
-            <Post key={image.id} imageURL={image.urls.small} />
+            <Post
+              key={image.id}
+              imageURL={image.urls.small}
+              imageLikes={image.likes}
+              username={image.user.instagram_username}
+            />
           ))}
       </PostGrid>
     );

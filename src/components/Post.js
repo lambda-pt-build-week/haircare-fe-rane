@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { FaHeart } from "react-icons/fa";
+import PostFooter from "./PostFooter";
 
 class Post extends Component {
   constructor(props) {
@@ -21,8 +23,18 @@ class Post extends Component {
 
   render() {
     return (
-      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
+      <div
+        style={{
+          gridRowEnd: `span ${this.state.spans}`
+        }}
+      >
         <PostImage ref={this.imageRef} src={this.props.imageURL} alt="image" />
+        <FooterWrapper>
+          <div>
+            <FaHeart /> {this.props.imageLikes}
+          </div>
+          <div>{this.props.username}</div>
+        </FooterWrapper>
       </div>
     );
   }
@@ -36,4 +48,13 @@ const PostImage = styled.img`
   @media (max-width: 500px) {
     width: 90vw;
   }
+`;
+
+const FooterWrapper = styled.div`
+  margin: -30px 10px;
+  justify-content: space-between;
+  display: flex;
+  color: white;
+  font-size: 16px;
+  font-weight: bolder;
 `;
