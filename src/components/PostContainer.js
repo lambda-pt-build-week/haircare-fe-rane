@@ -8,17 +8,17 @@ const UNSPLASH_API = "https://api.unsplash.com/";
 
 class PostContainer extends Component {
   state = {
-    imageURL: ""
+    images: ""
   };
   componentDidMount() {
     axios
       .get(
-        `${UNSPLASH_API}photos/random/?query=hairstyle&&client_id=${
+        `${UNSPLASH_API}photos/random/?query=hairstyle&&count=10&&client_id=${
           keys.unsplashAccessKey
         }`
       )
       .then(res => {
-        this.setState({ imageURL: res.data.urls.small });
+        this.setState({ images: res.data });
         console.log(res);
       })
       .catch(err => {
@@ -29,7 +29,8 @@ class PostContainer extends Component {
   render() {
     return (
       <div>
-        {this.state.imageURL && <Post imageURL={this.state.imageURL} />}
+        {this.state.images &&
+          this.state.images.map(image => <Post imageURL={image.urls.thumb} />)}
       </div>
     );
   }
