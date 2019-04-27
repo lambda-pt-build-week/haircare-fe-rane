@@ -10,6 +10,7 @@ class Post extends Component {
 
   componentDidMount() {
     this.imageRef.current.addEventListener("load", this.setSpans);
+    this.imageRef.current.addEventListener("onresize", this.setSpans);
   }
 
   setSpans = () => {
@@ -30,5 +31,9 @@ class Post extends Component {
 export default Post;
 
 const PostImage = styled.img`
-  width: 200px;
+  //max-width: 300px;
+  width: 32vw;
+  @media (max-width: 500px) {
+    width: 90vw;
+  }
 `;
