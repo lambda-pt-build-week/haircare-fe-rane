@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const Post = props => {
-    return (
-      <div>Post component</div>
-    );
-}
+const Post = ({ imageURL }) => {
+  return (
+    <div>
+      <img src={imageURL} alt="image" />
+    </div>
+  );
+};
 
 export default Post;
