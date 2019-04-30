@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "axios/index";
 import styled from "styled-components";
 
 import Post from "./Post";
-import * as keys from "../config/keys";
+import * as keys from "../../config/keys";
 
 const UNSPLASH_API = "https://api.unsplash.com/";
 
@@ -36,7 +36,8 @@ class PostContainer extends Component {
               key={image.id}
               imageURL={image.urls.small}
               imageLikes={image.likes}
-              username={image.user.instagram_username}
+              username={image.user.username}
+              history={this.props.history}
             />
           ))}
       </PostGrid>
@@ -49,11 +50,11 @@ export default PostContainer;
 const PostGrid = styled.div`
   display: grid;
   grid-gap: 0 5px;
-  grid-template-columns: repeat(auto-fit, minmax(32vw, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(24vw, 1fr));
   //border: 2px solid black;
   grid-auto-rows: 10px;
   height: 100vh;
   @media (max-width: 500px) {
-    grid-template-columns: repeat(auto-fit, minmax(90vw, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(48vw, 1fr));
   }
 `;
