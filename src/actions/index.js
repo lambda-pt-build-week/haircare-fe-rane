@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 export const FETCH_STYLISTS = 'FETCH_STYLISTS';
 export const FETCH_SUCCESS = 'FETCH_SUCCESS';
 export const ADD_STYLIST = 'ADD_STYLIST';
