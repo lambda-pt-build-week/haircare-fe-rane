@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { FaHeart } from "react-icons/fa";
+import PostFooter from "./PostFooter";
 
 class Post extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class Post extends Component {
 
   componentDidMount() {
     this.imageRef.current.addEventListener("load", this.setSpans);
+    this.imageRef.current.addEventListener("onresize", this.setSpans);
   }
 
   setSpans = () => {
@@ -20,8 +23,22 @@ class Post extends Component {
 
   render() {
     return (
-      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
+      <div
+        onMouseEnter={e => this.setState({ hover: true })}
+        onMouseLeave={e => this.setState({ hover: false })}
+        style={{
+          gridRowEnd: `span ${this.state.spans}`
+        }}
+      >
         <PostImage ref={this.imageRef} src={this.props.imageURL} alt="image" />
+        {this.state.hover && (
+          <FooterWrapper>
+            <div>
+              <FaHeart /> {this.props.imageLikes}
+            </div>
+            <div>{this.props.username}</div>
+          </FooterWrapper>
+        )}
       </div>
     );
   }
@@ -30,5 +47,24 @@ class Post extends Component {
 export default Post;
 
 const PostImage = styled.img`
-  width: 200px;
+  //max-width: 300px;
+  width: 32vw;
+  @media (max-width: 500px) {
+    width: 90vw;
+  }
+`;
+
+const FooterWrapper = styled.div`
+  margin: -30px auto;
+  justify-content: space-between;
+  display: flex;
+  color: white;
+  font-size: 16px;
+  font-weight: bolder;
+  width: 90%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: relative;
+  padding: 5px;
+  z-index: 10;
 `;
