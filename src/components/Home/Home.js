@@ -6,7 +6,7 @@ const Home = props => {
   return (
     <div>
       <SearchBar />
-      <PostContainer />
+      <PostContainer {...props} />
     </div>
   );
 };

@@ -36,7 +36,8 @@ class PostContainer extends Component {
               key={image.id}
               imageURL={image.urls.small}
               imageLikes={image.likes}
-              username={image.user.instagram_username}
+              username={image.user.username}
+              history={this.props.history}
             />
           ))}
       </PostGrid>
@@ -54,6 +55,6 @@ const PostGrid = styled.div`
   grid-auto-rows: 10px;
   height: 100vh;
   @media (max-width: 500px) {
-    grid-template-columns: repeat(auto-fit, minmax(90vw, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(48vw, 1fr));
   }
 `;

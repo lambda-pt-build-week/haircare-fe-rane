@@ -8,8 +8,8 @@ import PostDetail from "./components/Post/PostDetail";
 function App() {
   return (
     <div className="App">
-      <Route path="/" exact component={Home} />
-      <Route path="/post" component={PostDetail} />>
+      <Route path="/" exact render={props => <Home {...props} />} />
+      <Route path="/post" render={props => <PostDetail {...props} />} />
     </div>
   );
 }

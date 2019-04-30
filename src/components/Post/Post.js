@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { FaHeart } from "react-icons/fa";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class Post extends Component {
   constructor(props) {
@@ -21,9 +22,14 @@ class Post extends Component {
     this.setState({ spans });
   };
 
+  handleClick = e => {
+    this.props.history.push("/post");
+  };
+
   render() {
     return (
       <div
+        onClick={e => this.handleClick(e)}
         onMouseEnter={e => this.setState({ hover: true })}
         onMouseLeave={e => this.setState({ hover: false })}
         style={{
@@ -54,7 +60,7 @@ const PostImage = styled.img`
   //max-width: 300px;
   width: 24vw;
   @media (max-width: 500px) {
-    width: 90vw;
+    width: 48vw;
   }
 `;
 
