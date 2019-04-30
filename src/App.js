@@ -1,14 +1,13 @@
 import React from "react";
 import "./App.css";
+import { Route } from "react-router-dom";
 
-import PostContainer from "./components/PostContainer";
-import SearchBar from "./components/SearchBar";
+import Home from "./components/Home/Home";
 
 function App() {
   return (
     <div className="App">
-      <SearchBar />
-      <PostContainer />
+      <Route path="/" exact component={Home} />
     </div>
   );
 }

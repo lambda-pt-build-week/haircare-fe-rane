@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
+import axios from "axios/index";
 import styled from "styled-components";
 
 import Post from "./Post";
-import * as keys from "../config/keys";
+import * as keys from "../../config/keys";
 
 const UNSPLASH_API = "https://api.unsplash.com/";
 
