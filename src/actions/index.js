@@ -19,7 +19,7 @@ export const fetchStylists = () => {
 }
 
 export const addStylist = (newStylist) => dispatch => {
-  dispatch({ type: ADD_START });
+  dispatch({ type: ADD_STYLIST });
   axios
   .post('https://haircare.herokuapp.com/api/stylists', newStylist)
   .then(
