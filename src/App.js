@@ -10,6 +10,8 @@ function App() {
     <div className="App">
       <Route path="/" exact render={props => <Home {...props} />} />
       <Route path="/post" render={props => <PostDetail {...props} />} />
+      <Route path="/login" />
+      <Route exact path="/protected" component={Stylist} />
     </div>
   );
 }
