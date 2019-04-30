@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { FaHeart } from "react-icons/fa";
-import PostFooter from "./PostFooter";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class Post extends Component {
   constructor(props) {
@@ -21,13 +22,19 @@ class Post extends Component {
     this.setState({ spans });
   };
 
+  handleClick = e => {
+    this.props.history.push("/post");
+  };
+
   render() {
     return (
       <div
+        onClick={e => this.handleClick(e)}
         onMouseEnter={e => this.setState({ hover: true })}
         onMouseLeave={e => this.setState({ hover: false })}
         style={{
-          gridRowEnd: `span ${this.state.spans}`
+          gridRowEnd: `span ${this.state.spans}`,
+          cursor: "pointer"
         }}
       >
         <PostImage ref={this.imageRef} src={this.props.imageURL} alt="image" />
@@ -44,18 +51,21 @@ class Post extends Component {
   }
 }
 
-export default Post;
+export default connect(
+  null,
+  null
+)(Post);
 
 const PostImage = styled.img`
   //max-width: 300px;
-  width: 32vw;
+  width: 24vw;
   @media (max-width: 500px) {
-    width: 90vw;
+    width: 48vw;
   }
 `;
 
 const FooterWrapper = styled.div`
-  margin: -30px auto;
+  margin: -35px auto;
   justify-content: space-between;
   display: flex;
   color: white;
