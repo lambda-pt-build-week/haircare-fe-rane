@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { FaHeart } from "react-icons/fa";
-import PostFooter from "./PostFooter";
+import { connect } from "react-redux";
 
 class Post extends Component {
   constructor(props) {
@@ -44,7 +44,10 @@ class Post extends Component {
   }
 }
 
-export default Post;
+export default connect(
+  null,
+  null
+)(Post);
 
 const PostImage = styled.img`
   //max-width: 300px;
@@ -55,7 +58,7 @@ const PostImage = styled.img`
 `;
 
 const FooterWrapper = styled.div`
-  margin: -30px auto;
+  margin: -35px auto;
   justify-content: space-between;
   display: flex;
   color: white;
