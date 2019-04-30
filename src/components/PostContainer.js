@@ -49,7 +49,7 @@ export default PostContainer;
 const PostGrid = styled.div`
   display: grid;
   grid-gap: 0 5px;
-  grid-template-columns: repeat(auto-fit, minmax(32vw, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(24vw, 1fr));
   //border: 2px solid black;
   grid-auto-rows: 10px;
   height: 100vh;

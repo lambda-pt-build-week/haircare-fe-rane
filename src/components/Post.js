@@ -27,7 +27,8 @@ class Post extends Component {
         onMouseEnter={e => this.setState({ hover: true })}
         onMouseLeave={e => this.setState({ hover: false })}
         style={{
-          gridRowEnd: `span ${this.state.spans}`
+          gridRowEnd: `span ${this.state.spans}`,
+          cursor: "pointer"
         }}
       >
         <PostImage ref={this.imageRef} src={this.props.imageURL} alt="image" />
@@ -51,7 +52,7 @@ export default connect(
 
 const PostImage = styled.img`
   //max-width: 300px;
-  width: 32vw;
+  width: 24vw;
   @media (max-width: 500px) {
     width: 90vw;
   }
