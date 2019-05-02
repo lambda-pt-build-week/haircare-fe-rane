@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { stylistsReducer } from "./reducers";
+import { postReducer } from './reducers/postReducer';
 import { BrowserRouter as Router } from "react-router-dom";
 
-const store = createStore(stylistsReducer, applyMiddleware(thunk, logger));
+const rootReducer = combineReducers({ stylistsReducer, postReducer })
+
+const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
 ReactDOM.render(
   <Router>
