@@ -1,46 +1,37 @@
 import React, { Component } from "react";
 import axios from "axios/index";
 import styled from "styled-components";
+import { connect } from 'react-redux';
 
 import Post from "./Post";
+import { fetchPosts } from '../../actions/postActions';
 //import * as keys from "../../config/keys";
 
 const UNSPLASH_API = "https://api.unsplash.com/";
 
 class PostContainer extends Component {
   state = {
-    images: ""
+    posts: [{}]
   };
   componentDidMount() {
-    if (process.env.REACT_APP_UNSPLASH_ACCESS_KEY !== undefined) {
-      axios
-          .get(
-              `${UNSPLASH_API}photos/random/?query=hair&&count=50&&client_id=${
-                  process.env.REACT_APP_UNSPLASH_ACCESS_KEY
-                  }`
-          )
-          .then(res => {
-            this.setState({images: res.data});
-            console.log(res);
-          })
-          .catch(err => {
-            console.log(err);
-          });
+    if (process.env.REACT_APP_UNSPLASH_ACCESS_KEY !== undefined
+        && !this.props.posts) {
+      this.props.fetchPosts();
     } else {
-      console.log("key undefined");
+      console.log("nopers");
     }
   }
 
   render() {
     return (
       <PostGrid>
-        {this.state.images &&
-          this.state.images.map(image => (
+        {this.props.posts &&
+          this.props.posts.map(post => (
             <Post
-              key={image.id}
-              imageURL={image.urls.small}
-              imageLikes={image.likes}
-              username={image.user.username}
+              key={post.id}
+              imageURL={post.imageUrl}
+              imageLikes={post.likes}
+              username={post.username}
               history={this.props.history}
             />
           ))}
@@ -49,7 +40,15 @@ class PostContainer extends Component {
   }
 }
 
-export default PostContainer;
+const mapStateToProps = ({ postReducer }) => {
+  const { posts, fetchingPosts, fetchError } = postReducer;
+  console.log(posts);
+  return {
+    posts, fetchingPosts, fetchError
+  }
+}
+
+export default connect(mapStateToProps, { fetchPosts })(PostContainer);
 
 const PostGrid = styled.div`
   display: grid;
