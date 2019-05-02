@@ -5,6 +5,7 @@ import Home from "./components/Home/Home";
 import PostDetail from "./components/Post/PostDetail";
 import Stylist from "./components/Stylist/Stylist";
 import Login from "./components/Login/Login";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
