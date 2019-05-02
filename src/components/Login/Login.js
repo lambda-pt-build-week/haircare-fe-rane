@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import JWT from 'jsonwebtoken';
 
 class Login extends Component {
   state = {
