@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import JWT from 'jsonwebtoken';
+import axios from 'axios';
+
 
 class Login extends Component {
   state = {
@@ -59,3 +60,5 @@ userLogin = event => {
     )
   }
 }
+
+export default Login;
