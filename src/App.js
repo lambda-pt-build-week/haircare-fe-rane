@@ -12,7 +12,7 @@ function App() {
       <Route path="/" exact render={props => <Home {...props} />} />
       <Route path="/post" render={props => <PostDetail {...props} />} />
       <Route path="/login" component={Login}/>
-      <Route exact path="/protected" component={Stylist} />
+      <PrivateRoute exact path="/protected" component={Stylist} />
     </div>
   );
 }
