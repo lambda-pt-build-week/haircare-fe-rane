@@ -3,7 +3,7 @@ import axios from "axios/index";
 import styled from "styled-components";
 
 import Post from "./Post";
-import * as keys from "../../config/keys";
+//import * as keys from "../../config/keys";
 
 const UNSPLASH_API = "https://api.unsplash.com/";
 
@@ -12,19 +12,23 @@ class PostContainer extends Component {
     images: ""
   };
   componentDidMount() {
-    axios
-      .get(
-        `${UNSPLASH_API}photos/random/?query=hair&&count=50&&client_id=${
-          keys.unsplashAccessKey
-        }`
-      )
-      .then(res => {
-        this.setState({ images: res.data });
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    if (process.env.REACT_APP_UNSPLASH_ACCESS_KEY !== undefined) {
+      axios
+          .get(
+              `${UNSPLASH_API}photos/random/?query=hair&&count=50&&client_id=${
+                  process.env.REACT_APP_UNSPLASH_ACCESS_KEY
+                  }`
+          )
+          .then(res => {
+            this.setState({images: res.data});
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+    } else {
+      console.log("key undefined");
+    }
   }
 
   render() {
@@ -49,8 +53,10 @@ export default PostContainer;
 
 const PostGrid = styled.div`
   display: grid;
+  max-width: 800px;
+  margin: 0 auto;
   grid-gap: 0 5px;
-  grid-template-columns: repeat(auto-fit, minmax(24vw, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12vw, 1fr));
   //border: 2px solid black;
   grid-auto-rows: 10px;
   height: 100vh;
