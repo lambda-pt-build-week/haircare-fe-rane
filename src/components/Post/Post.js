@@ -41,9 +41,9 @@ class Post extends Component {
         {this.state.hover && (
           <FooterWrapper>
             <div>
-              <FaHeart /> {this.props.imageLikes}
+              <FaHeart /> 200 {/*this.props.imageLikes*/}
             </div>
-            <div>{this.props.username}</div>
+            <div>{/* this.props.username */}Username</div>
           </FooterWrapper>
         )}
       </div>
