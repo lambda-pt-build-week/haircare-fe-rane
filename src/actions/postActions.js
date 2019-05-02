@@ -11,7 +11,7 @@ export const fetchPosts = () => dispatch => {
 
     axios
         .get(
-            `${UNSPLASH_API}photos/random/?query=hair&&count=50&&client_id=${
+            `${UNSPLASH_API}photos/random/?query=hair&&count=100&&client_id=${
                 process.env.REACT_APP_UNSPLASH_ACCESS_KEY
                 }`
         )

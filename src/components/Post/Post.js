@@ -62,6 +62,9 @@ const PostImage = styled.img`
   @media (max-width: 500px) {
     width: 48vw;
   }
+  @media (max-width: 1000px) {
+    width: 25vw;
+  }
 `;
 
 const FooterWrapper = styled.div`

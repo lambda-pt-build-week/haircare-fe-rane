@@ -62,4 +62,7 @@ const PostGrid = styled.div`
   @media (max-width: 500px) {
     grid-template-columns: repeat(auto-fit, minmax(48vw, 1fr));
   }
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
+  }
 `;
