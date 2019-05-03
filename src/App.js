@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from 'axios';
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Home from "./components/Home/Home";
 import PostDetail from "./components/Post/PostDetail";
 import Stylist from "./components/Stylist/Stylist";
@@ -33,4 +33,4 @@ componentDidMount() {
   }
 }
 
-export default App;
+export default withRouter(App);
