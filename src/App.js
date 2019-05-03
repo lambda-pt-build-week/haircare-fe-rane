@@ -14,15 +14,11 @@ class App extends Component {
   }
 
 componentDidMount() {
-  axios
-  .get('https://haircare.herokuapp.com/auth/google')
-  .then(res => {
     console.log(this.props.location.pathname)
      if (this.props.location.pathname != null){
-       localStorage.setItem('jwtToken', res.data)
+       localStorage.setItem('jwtToken', this.props.location.pathname)
        localStorage.getItem(this.state.jwtToken)
      }
-   })
  }
 
    render() {
