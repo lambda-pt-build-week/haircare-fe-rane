@@ -13,19 +13,19 @@ import { fetchStylists } from "./actions";
 
 class App extends Component {
   state = {
-    jwtToken: "jwtToken"
+    jwtToken: 'jwtToken'
   }
 
-componentDidMount() {
-    console.log(this.props.location.pathname)
-     if (this.props.location.pathname != null){
-       localStorage.setItem("jwtToken", this.props.location.pathname)
-       localStorage.getItem(this.state.jwtToken)
-     }
-   })
+    componentDidMount() {
+        console.log(this.props.location.pathname)
+        if (this.props.location.pathname != null){
+            localStorage.setItem("jwtToken", this.props.location.pathname)
+            localStorage.getItem(this.state.jwtToken)
+        }
+
     this.props.fetchStylists();
 
- }
+}
 
    render() {
     return (
