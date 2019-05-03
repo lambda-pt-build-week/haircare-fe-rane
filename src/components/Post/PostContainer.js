@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import Post from "./Post";
 import { fetchPosts } from '../../actions/postActions';
+import pompLogo from '../../assets/pompadore.png';
 //import * as keys from "../../config/keys";
 
 const UNSPLASH_API = "https://api.unsplash.com/";
@@ -25,6 +26,7 @@ class PostContainer extends Component {
   render() {
     return (
       <PostGrid>
+        <Post imageURL={pompLogo} static />
         {this.props.posts &&
           this.props.posts.map(post => (
             <Post
@@ -57,9 +59,13 @@ const PostGrid = styled.div`
   grid-gap: 0 5px;
   grid-template-columns: repeat(auto-fit, minmax(12vw, 1fr));
   //border: 2px solid black;
-  grid-auto-rows: 10px;
+  grid-auto-rows: 1px;
   height: 100vh;
+  @media (max-width: 1000px) {
+    grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
+  }
   @media (max-width: 500px) {
+    //width: 95%;
     grid-template-columns: repeat(auto-fit, minmax(48vw, 1fr));
   }
 `;

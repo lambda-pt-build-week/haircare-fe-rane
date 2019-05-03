@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 
 class Login extends Component {
   state = {
-    username: "",
-    password: ""
+    credentials: {
+      username: "",
+      password: ""
+    }
+  }
+
+  loginChangeHandler = event => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [event.target.name]: event.target.value
+      }
+    })
   }
 
 
@@ -13,8 +25,8 @@ userLogin = event => {
   event.preventDefault();
 
   const loginInfo = {
-    username: this.state.username,
-    password: this.state.password
+    username: this.state.credentials.username,
+    password: this.state.credentials.password
     }
 
   axios
@@ -41,18 +53,20 @@ userLogin = event => {
   render() {
     return (
       <div className="login-form">
-        <form>
+        <form onSubmit={this.userLogin}>
           <input
           type="text"
           name="username"
           placeholder="username"
-          value={this.state.username}
+          value={this.state.credentials.username}
+          onChange={this.loginChangeHandler}
           />
           <input
           type="password"
           name="password"
           placeholder="password"
-          value={this.state.password}
+          value={this.state.credentials.password}
+          onChange={this.loginChangeHandler}
           />
           <button className="login-btn">Login</button>
         </form>
@@ -61,4 +75,4 @@ userLogin = event => {
   }
 }
 
-export default Login;
+export default connect(null, {})(Login);
