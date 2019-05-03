@@ -7,6 +7,9 @@ import PostDetail from "./components/Post/PostDetail";
 import Stylist from "./components/Stylist/Stylist";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/PrivateRoute";
+import { connect } from 'react-redux';
+
+import { fetchStylists } from "./actions";
 
 class App extends Component {
   state = {
@@ -19,6 +22,9 @@ componentDidMount() {
        localStorage.setItem("jwtToken", this.props.location.pathname)
        localStorage.getItem(this.state.jwtToken)
      }
+   })
+    this.props.fetchStylists();
+
  }
 
    render() {
@@ -33,4 +39,4 @@ componentDidMount() {
   }
 }
 
-export default withRouter(App);
+export default connect(null, { fetchStylists })(withRouter(App));

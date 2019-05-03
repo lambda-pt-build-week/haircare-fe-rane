@@ -4,6 +4,8 @@ export const FETCH_POST_STARTED = "FETCH_POST_STARTED";
 export const FETCH_POST_SUCCESS = "FETCH_POST_SUCCESS";
 export const FETCH_POST_FAILED = "FETCH_POST_FAILED";
 
+export const GET_POST = "GET_POST";
+
 //const UNSPLASH_API = "https://api.unsplash.com/";
 const HAIRCARE_API = "https://haircare.herokuapp.com/api/";
 
@@ -12,9 +14,6 @@ export const fetchPosts = () => dispatch => {
 
     axios
         .get(
-            // `${UNSPLASH_API}photos/random/?query=hair&&count=100&&client_id=${
-            //     process.env.REACT_APP_UNSPLASH_ACCESS_KEY
-            //     }`
             `${HAIRCARE_API}posts`
         )
         .then(res => {
@@ -27,6 +26,7 @@ export const fetchPosts = () => dispatch => {
                     //username: post.user.username,
                     imageUrl: post.image,
                     likes,
+                    stylist_id: post.stylist_id,
                     description: post.description
                 }
             });
@@ -43,4 +43,11 @@ export const fetchPosts = () => dispatch => {
             console.log(err);
         });
 
+}
+
+export const getPost = postID => {
+    return {
+        type: GET_POST,
+        payload: postID
+    }
 }

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { FaHeart } from "react-icons/fa";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+
+import { getPost } from "../../actions/postActions";
 
 class Post extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class Post extends Component {
   };
 
   handleClick = e => {
+    this.props.getPost(this.props.id)
     this.props.history.push("/post");
   };
 
@@ -54,7 +56,7 @@ class Post extends Component {
 
 export default connect(
   null,
-  null
+    { getPost }
 )(Post);
 
 const PostWrapper = styled.div`
