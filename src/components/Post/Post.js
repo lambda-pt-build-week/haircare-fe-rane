@@ -8,7 +8,7 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.imageRef = React.createRef();
-    this.state = { spans: 0 };
+    this.state = { spans: 0, opacity: 0 };
   }
 
   componentDidMount() {
@@ -19,7 +19,7 @@ class Post extends Component {
   setSpans = () => {
     const height = this.imageRef.current.clientHeight;
     const spans = height+5;//Math.ceil(height / 10);
-    this.setState({ spans });
+    this.setState({ spans, opacity: 1 });
   };
 
   handleClick = e => {
@@ -28,25 +28,26 @@ class Post extends Component {
 
   render() {
     return (
-      <PostWrapper
+      <div
         onClick={!this.props.static ? e => this.handleClick(e) : null }
         onMouseEnter={e => this.setState({ hover: true })}
         onMouseLeave={e => this.setState({ hover: false })}
         style={{
+          opacity: `${this.state.opacity}`,
           gridRowEnd: `span ${this.state.spans}`,
           cursor: "pointer"
         }}
       >
         <PostImage ref={this.imageRef} src={this.props.imageURL} alt="image" />
-        {this.state.hover && !this.props.static && (
-          <FooterWrapper>
-            <div>
-              <FaHeart /> 200 {/*this.props.imageLikes*/}
-            </div>
-            <div>{/* this.props.username */}Username</div>
-          </FooterWrapper>
-        )}
-      </PostWrapper>
+        {/*{!this.props.static && (*/}
+        {/*  <FooterWrapper style={{ opacity: `${this.state.hover ? ".9":".25"}` }}>*/}
+        {/*    <div>*/}
+        {/*      <FaHeart onClick={e => console.log} /> {this.props.imageLikes}*/}
+        {/*    </div>*/}
+        {/*    <div style={{ opacity: `${this.state.hover ? ".9":"0"}`}}>/!* this.props.username *!/Username</div>*/}
+        {/*  </FooterWrapper>*/}
+        {/*)}*/}
+      </div>
     );
   }
 }
@@ -74,16 +75,20 @@ const PostImage = styled.img`
 `;
 
 const FooterWrapper = styled.div`
-  margin: -35px auto;
+  margin: -33px auto;
+  border-radius: 10px;
   justify-content: space-between;
   display: flex;
   color: white;
   font-size: 16px;
   font-weight: bolder;
-  width: 90%;
+  width: 25vw;
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0.6);
   position: relative;
-  padding: 5px;
+  //padding: 5px;
   z-index: 10;
+  @media (max-width: 500px) {
+    width: 46vw;
+  }
 `;
