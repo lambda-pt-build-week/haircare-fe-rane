@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
 
+const googleButton = require('../../assets/googlebutton.png');
 
 class Login extends Component {
   state = {
@@ -23,31 +22,7 @@ class Login extends Component {
 
 userLogin = event => {
   event.preventDefault();
-
-  const loginInfo = {
-    username: this.state.credentials.username,
-    password: this.state.credentials.password
-    }
-
-  axios
-  .post('https://haircare.herokuapp.com/auth/google', loginInfo)
-  .then(res => {
-    localStorage.setItem('jwtToken', res.data.token);
-    localStorage.setItem('user', JSON.stringify(loginInfo))
-
-    const token = localStorage.getItem('jwtToken');
-
-    if(token) {
-      axios.defaults.headers.common['Authorization'] = token;
-    }
-
-    token ? this.props.history.push('/protected')
-    : this.props.history.push('/')
-  })
-  .catch(err => {
-    console.log(err)
-  })
-}
+  }
 
 
   render() {
@@ -68,11 +43,11 @@ userLogin = event => {
           value={this.state.credentials.password}
           onChange={this.loginChangeHandler}
           />
-          <button className="login-btn">Login</button>
+          <a href="https://haircare.herokuapp.com/auth/google"><img src={googleButton} alt="google button"/></a>
         </form>
       </div>
     )
   }
 }
 
-export default connect(null, {})(Login);
+export default Login;
