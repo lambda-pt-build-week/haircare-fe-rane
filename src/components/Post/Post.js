@@ -29,7 +29,7 @@ class Post extends Component {
   render() {
     return (
       <div
-        onClick={e => this.handleClick(e)}
+        onClick={!this.props.static ? e => this.handleClick(e) : null }
         onMouseEnter={e => this.setState({ hover: true })}
         onMouseLeave={e => this.setState({ hover: false })}
         style={{
@@ -38,12 +38,12 @@ class Post extends Component {
         }}
       >
         <PostImage ref={this.imageRef} src={this.props.imageURL} alt="image" />
-        {this.state.hover && (
+        {this.state.hover && !this.props.static && (
           <FooterWrapper>
             <div>
-              <FaHeart /> {this.props.imageLikes}
+              <FaHeart /> 200 {/*this.props.imageLikes*/}
             </div>
-            <div>{this.props.username}</div>
+            <div>{/* this.props.username */}Username</div>
           </FooterWrapper>
         )}
       </div>
@@ -59,6 +59,9 @@ export default connect(
 const PostImage = styled.img`
   //max-width: 300px;
   width: 12vw;
+    @media (max-width: 1000px) {
+    width: 25vw;
+  }
   @media (max-width: 500px) {
     width: 48vw;
   }
