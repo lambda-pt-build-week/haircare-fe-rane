@@ -34,6 +34,7 @@ class PostContainer extends Component {
               id={post.id}
               imageURL={post.imageUrl}
               imageLikes={post.likes}
+              stylistID={post.stylist_id}
               username={post.username}
               history={this.props.history}
             />

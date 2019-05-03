@@ -26,6 +26,7 @@ export const fetchPosts = () => dispatch => {
                     //username: post.user.username,
                     imageUrl: post.image,
                     likes,
+                    stylist_id: post.stylist_id,
                     description: post.description
                 }
             });
