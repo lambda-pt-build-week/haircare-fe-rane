@@ -6,7 +6,7 @@ function Login() {
   return (
     <>
       <a href="https://haircare.herokuapp.com/auth/google">
-        <img src={googleButton} alt="google button"/>
+        <img src={googleButton} alt="google button"/> 
       </a>
     </>
   )
