@@ -18,7 +18,7 @@ export const fetchPosts = () => dispatch => {
             `${HAIRCARE_API}posts`
         )
         .then(res => {
-            console.log(res);
+            console.table(res.data);
 
             const postData = res.data.map(post => {
                 return {

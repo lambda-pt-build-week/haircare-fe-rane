@@ -18,7 +18,7 @@ class Post extends Component {
 
   setSpans = () => {
     const height = this.imageRef.current.clientHeight;
-    const spans = Math.ceil(height / 10);
+    const spans = height+5;//Math.ceil(height / 10);
     this.setState({ spans });
   };
 
@@ -28,7 +28,7 @@ class Post extends Component {
 
   render() {
     return (
-      <div
+      <PostWrapper
         onClick={!this.props.static ? e => this.handleClick(e) : null }
         onMouseEnter={e => this.setState({ hover: true })}
         onMouseLeave={e => this.setState({ hover: false })}
@@ -46,7 +46,7 @@ class Post extends Component {
             <div>{/* this.props.username */}Username</div>
           </FooterWrapper>
         )}
-      </div>
+      </PostWrapper>
     );
   }
 }
@@ -56,14 +56,20 @@ export default connect(
   null
 )(Post);
 
+const PostWrapper = styled.div`
+
+`;
+
 const PostImage = styled.img`
   //max-width: 300px;
   width: 12vw;
-    @media (max-width: 1000px) {
+  border-radius: 10px;
+    
+  @media (max-width: 1000px) {
     width: 25vw;
   }
   @media (max-width: 500px) {
-    width: 48vw;
+    width: 46vw;
   }
 `;
 
