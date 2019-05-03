@@ -7,7 +7,8 @@ import StylistData from '../Stylist/StylistData';
 
 class PostDetail extends Component {
   render() {
-    let stylist;
+    let stylist,
+        stylistID = this.props.selectedPost.stylist_id || 1;
     if (this.props.selectedPost != null) {
       stylist = this.props.stylists.find(stylist => stylist.id === this.props.selectedPost.stylist_id)
     }
@@ -18,10 +19,13 @@ class PostDetail extends Component {
   }
 }
 
-const mapStateToProps = ({ postReducer, stylistReducer }) => {
+const mapStateToProps = (state) => {
+  console.log(state);
+  let { postReducer, stylistsReducer } = state;
+
   return {
     selectedPost: postReducer.selectedPost,
-    stylists: stylistReducer.stylists
+    stylists: stylistsReducer.stylists
   }
 }
 
