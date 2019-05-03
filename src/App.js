@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import axios from 'axios';
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Home from "./components/Home/Home";
 import PostDetail from "./components/Post/PostDetail";
 import Stylist from "./components/Stylist/Stylist";
@@ -10,19 +10,15 @@ import PrivateRoute from "./components/PrivateRoute";
 
 class App extends Component {
   state = {
-    jwtToken: 'jwtToken'
+    jwtToken: "jwtToken"
   }
 
 componentDidMount() {
-  axios
-  .get('https://haircare.herokuapp.com/auth/google')
-  .then(res => {
     console.log(this.props.location.pathname)
      if (this.props.location.pathname != null){
-       localStorage.setItem('jwtToken', res.data)
+       localStorage.setItem("jwtToken", this.props.location.pathname)
        localStorage.getItem(this.state.jwtToken)
      }
-   })
  }
 
    render() {
@@ -37,4 +33,4 @@ componentDidMount() {
   }
 }
 
-export default App;
+export default withRouter(App);
