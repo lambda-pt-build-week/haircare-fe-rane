@@ -21,11 +21,12 @@ export const fetchPosts = () => dispatch => {
             console.table(res.data);
 
             const postData = res.data.map(post => {
+                const likes = Math.ceil(Math.random() * (500 - 1) + 1);
                 return {
                     id: post.id,
                     //username: post.user.username,
                     imageUrl: post.image,
-                    //likes: post.likes,
+                    likes,
                     description: post.description
                 }
             });
