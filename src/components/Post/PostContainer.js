@@ -31,6 +31,7 @@ class PostContainer extends Component {
           this.props.posts.map(post => (
             <Post
               key={post.id}
+              id={post.id}
               imageURL={post.imageUrl}
               imageLikes={post.likes}
               username={post.username}

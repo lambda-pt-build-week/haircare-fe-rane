@@ -3,11 +3,17 @@ import { connect } from "react-redux";
 
 class PostDetail extends Component {
   render() {
-    return <div>Detail</div>;
+    return <div>{this.props.selectedPost.id}</div>;
+  }
+}
+
+const mapStateToProps = ({ postReducer }) => {
+  return {
+    selectedPost: postReducer.selectedPost
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   null
 )(PostDetail);
