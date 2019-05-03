@@ -8,7 +8,7 @@ import Login from './components/Login/Login';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: "white" }}>
       <Route path="/" exact render={props => <Home {...props} />} />
       <Route path="/post" render={props => <PostDetail {...props} />} />
       <Route path="/login" component={Login}/>
@@ -18,3 +18,5 @@ function App() {
 }
 
 export default App;
+
+
