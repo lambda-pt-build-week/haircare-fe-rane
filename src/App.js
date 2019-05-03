@@ -32,7 +32,7 @@ componentDidMount() {
         <Route path="/" exact render={props => <Home {...props} />} />
         <Route path="/post" render={props => <PostDetail {...props} />} />
         <Route path="/login" component={Login}/>
-        <PrivateRoute exact path="/protected" component={Stylist} />
+        <PrivateRoute exact path="/protected" component={Stylist} /> 
       </div>
     )
   }
