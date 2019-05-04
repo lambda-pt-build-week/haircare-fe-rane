@@ -2,7 +2,7 @@ import { FETCH_POST_STARTED, FETCH_POST_SUCCESS, FETCH_POST_FAILED, GET_POST } f
 
 const initialState = {
     fetchingPosts: false,
-    selectedPost: "",
+    selectedPost: null,
     fetchError: "",
     posts: null
 }

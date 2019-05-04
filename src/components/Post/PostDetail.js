@@ -1,21 +1,28 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
 import Carousel from '../Carousel/Carousel';
 import StylistData from '../Stylist/StylistData';
 
 class PostDetail extends Component {
   render() {
-    let stylist,
-        stylistID = this.props.selectedPost.stylist_id || 1;
+    let stylist;
+
     if (this.props.selectedPost != null) {
       stylist = this.props.stylists.find(stylist => stylist.id === this.props.selectedPost.stylist_id)
+
+      return (<DetailWrapper>
+        <Carousel>
+          <img src={this.props.selectedPost.imageUrl} alt={this.props.selectedPost.description}/>
+          <img src={stylist.profile_picture} alt={stylist.stylist_name}/>
+        </Carousel>
+        <StylistData stylist={stylist}/>
+      </DetailWrapper>);
+    } else {
+      return <Redirect path="/" />
     }
-    return (<DetailWrapper>
-      <Carousel />
-      <StylistData stylist={stylist} />
-    </DetailWrapper>);
   }
 }
 
@@ -36,5 +43,9 @@ export default connect(
 
 const DetailWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  max-width: 800px;
+  width: 100%;
+  flex-direction: row;
+  margin: 15px auto;
 `;
