@@ -8,22 +8,21 @@ import StylistData from "../Stylist/StylistData";
 
 class PostDetail extends Component {
   render() {
-    let stylist;
+    let stylist, images;
 
     if (this.props.selectedPost != null) {
       stylist = this.props.stylists.find(
         stylist => stylist.id === this.props.selectedPost.stylist_id
       );
+      images = this.props.posts.filter(
+        post =>
+          stylist.id === post.stylist_id &&
+          post.id != this.props.selectedPost.id
+      );
 
       return (
         <DetailWrapper>
-          <Carousel>
-            <img
-              src={this.props.selectedPost.imageUrl}
-              alt={this.props.selectedPost.description}
-            />
-            <img src={stylist.profile_picture} alt={stylist.stylist_name} />
-          </Carousel>
+          <Carousel>{this.getImages(images)}</Carousel>
           <StylistData stylist={stylist} />
         </DetailWrapper>
       );
@@ -31,6 +30,25 @@ class PostDetail extends Component {
       return <Redirect path="/" />;
     }
   }
+
+  getImages = images => {
+    let result = [];
+
+    result.push(
+      <img
+        src={this.props.selectedPost.imageUrl}
+        alt={this.props.selectedPost.description}
+      />
+    );
+
+    images.forEach(image =>
+      result.push(<img src={image.imageUrl} alt={image.description} />)
+    );
+
+    //console.log(result);
+
+    return result;
+  };
 }
 
 const mapStateToProps = state => {
@@ -39,6 +57,7 @@ const mapStateToProps = state => {
 
   return {
     selectedPost: postReducer.selectedPost,
+    posts: postReducer.posts,
     stylists: stylistsReducer.stylists
   };
 };

@@ -14,12 +14,11 @@ class Post extends Component {
 
   componentDidMount() {
     this.imageRef.current.addEventListener("load", this.setSpans);
-    //this.imageRef.current.addEventListener("onresize", this.setSpans);
   }
 
   setSpans = () => {
     const height = this.imageRef.current.clientHeight;
-    const spans = height + 5; //Math.ceil(height / 10);
+    const spans = height + 5;
     this.setState({ spans, opacity: 1 });
   };
 
@@ -41,14 +40,6 @@ class Post extends Component {
         }}
       >
         <PostImage ref={this.imageRef} src={this.props.imageURL} alt="image" />
-        {/*{!this.props.static && (*/}
-        {/*  <FooterWrapper style={{ opacity: `${this.state.hover ? ".9":".25"}` }}>*/}
-        {/*    <div>*/}
-        {/*      <FaHeart onClick={e => console.log} /> {this.props.imageLikes}*/}
-        {/*    </div>*/}
-        {/*    <div style={{ opacity: `${this.state.hover ? ".9":"0"}`}}>/!* this.props.username *!/Username</div>*/}
-        {/*  </FooterWrapper>*/}
-        {/*)}*/}
       </div>
     );
   }

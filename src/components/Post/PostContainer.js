@@ -64,12 +64,14 @@ export default connect(
 const PostGrid = styled.div`
   display: grid;
   max-width: 800px;
+  //min-height: 5000px;
   margin: 0 auto;
   grid-gap: 0 5px;
   grid-template-columns: repeat(auto-fit, minmax(12vw, 1fr));
   //border: 2px solid black;
+  //grid-template-rows: repeat(auto-fill, 1px);
   grid-auto-rows: 1px;
-  height: 200vh;
+  //height: 300vh;
   @media (max-width: 1000px) {
     grid-template-columns: repeat(auto-fit, minmax(25vw, 1fr));
   }
