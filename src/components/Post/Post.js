@@ -19,19 +19,19 @@ class Post extends Component {
 
   setSpans = () => {
     const height = this.imageRef.current.clientHeight;
-    const spans = height+5;//Math.ceil(height / 10);
+    const spans = height + 5; //Math.ceil(height / 10);
     this.setState({ spans, opacity: 1 });
   };
 
   handleClick = e => {
-    this.props.getPost(this.props.id)
+    this.props.getPost(this.props.id);
     this.props.history.push("/post");
   };
 
   render() {
     return (
       <div
-        onClick={!this.props.static ? e => this.handleClick(e) : null }
+        onClick={!this.props.static ? e => this.handleClick(e) : null}
         onMouseEnter={e => this.setState({ hover: true })}
         onMouseLeave={e => this.setState({ hover: false })}
         style={{
@@ -56,18 +56,16 @@ class Post extends Component {
 
 export default connect(
   null,
-    { getPost }
+  { getPost }
 )(Post);
 
-const PostWrapper = styled.div`
-
-`;
+const PostWrapper = styled.div``;
 
 const PostImage = styled.img`
   //max-width: 300px;
   width: 12vw;
   border-radius: 10px;
-    
+
   @media (max-width: 1000px) {
     width: 25vw;
   }
