@@ -1,39 +1,51 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 class CarouselImage extends Component {
   state = {
-    style: {}
+    style: { opacity: 0 }
+    //loaded: false
   };
 
-  constructor(props) {
-    super(props);
-    this.imageRef = React.createRef();
-  }
-
-  componentDidMount() {
-    this.imageRef.current.addEventListener("load", this.setHeight);
-  }
-
   setHeight = () => {
-    let width = this.imageRef.current.clientWidth;
-    let height = this.imageRef.current.clientHeight;
-    console.log(height, width);
+    let tmpImage = new Image();
+    // let width = 0,
+    //   height = 0;
+    // //let height = 0;
+    //
+    // tmpImage.onload = _ => {
+    //   height = tmpImage.height;
+    //   width = tmpImage.width;
+    // };
 
-    if (width > Number(this.props.maxWidth)) {
-      const ratio = this.props.maxWidth / width;
-      width = Number(this.props.maxWidth);
-      height = this.imageRef.current.clientHeight * ratio;
-    }
-    console.log(height, width);
-    this.setState({ style: { height, width } });
+    tmpImage.src = this.props.url;
+
+    if (this.state.opacity === 1) return;
+
+    this.setState(state => {
+      let width = tmpImage.width;
+      let height = tmpImage.height;
+
+      console.log(height, width);
+      if (width > Number(this.props.maxWidth)) {
+        const ratio = this.props.maxWidth / width;
+        width = Number(this.props.maxWidth);
+        height *= ratio;
+      }
+      console.log(height, width);
+
+      return { style: { width, height, opacity: 1 } };
+    });
   };
 
   render() {
     return (
-      <img
+      <ImgWrapper
+        onLoad={e => {
+          this.setHeight();
+        }}
         src={this.props.url}
         alt={this.props.desc}
-        ref={this.imageRef}
         style={this.state.style}
       />
     );
@@ -41,3 +53,7 @@ class CarouselImage extends Component {
 }
 
 export default CarouselImage;
+
+const ImgWrapper = styled.img`
+  align-self: center;
+`;

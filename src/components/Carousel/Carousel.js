@@ -62,7 +62,9 @@ const CarouselWrapper = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: no-wrap;
+  justify-content: center;
   max-width: 300px;
+  min-height: 400px;
   height: fit-content;
 `;
 
