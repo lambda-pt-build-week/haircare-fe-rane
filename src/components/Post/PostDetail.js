@@ -1,40 +1,66 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
+import styled from "styled-components";
+import { Redirect } from "react-router-dom";
 
-import Carousel from '../Carousel/Carousel';
-import StylistData from '../Stylist/StylistData';
+import Carousel from "../Carousel/Carousel";
+import StylistData from "../Stylist/StylistData";
 
 class PostDetail extends Component {
   render() {
-    let stylist;
+    let stylist, images;
 
     if (this.props.selectedPost != null) {
-      stylist = this.props.stylists.find(stylist => stylist.id === this.props.selectedPost.stylist_id)
+      stylist = this.props.stylists.find(
+        stylist => stylist.id === this.props.selectedPost.stylist_id
+      );
+      images = this.props.posts.filter(
+        post =>
+          stylist.id === post.stylist_id &&
+          post.id != this.props.selectedPost.id
+      );
 
-      return (<DetailWrapper>
-        <Carousel>
-          <img src={this.props.selectedPost.imageUrl} alt={this.props.selectedPost.description}/>
-          <img src={stylist.profile_picture} alt={stylist.stylist_name}/>
-        </Carousel>
-        <StylistData stylist={stylist}/>
-      </DetailWrapper>);
+      return (
+        <DetailWrapper>
+          <Carousel>{this.getImages(images)}</Carousel>
+          <StylistData stylist={stylist} />
+        </DetailWrapper>
+      );
     } else {
-      return <Redirect path="/" />
+      return <Redirect path="/" />;
     }
   }
+
+  getImages = images => {
+    let result = [];
+
+    result.push(
+      <img
+        src={this.props.selectedPost.imageUrl}
+        alt={this.props.selectedPost.description}
+      />
+    );
+
+    images.forEach(image =>
+      result.push(<img src={image.imageUrl} alt={image.description} />)
+    );
+
+    //console.log(result);
+
+    return result;
+  };
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   console.log(state);
   let { postReducer, stylistsReducer } = state;
 
   return {
     selectedPost: postReducer.selectedPost,
+    posts: postReducer.posts,
     stylists: stylistsReducer.stylists
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,
