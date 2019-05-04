@@ -7,10 +7,10 @@ import logger from "redux-logger";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { Provider } from "react-redux";
 import { stylistsReducer } from "./reducers";
-import { postReducer } from './reducers/postReducer';
+import { postReducer } from "./reducers/postReducer";
 import { BrowserRouter as Router } from "react-router-dom";
 
-const rootReducer = combineReducers({ stylistsReducer, postReducer })
+const rootReducer = combineReducers({ stylistsReducer, postReducer });
 
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
