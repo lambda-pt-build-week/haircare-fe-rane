@@ -1,6 +1,6 @@
 import React from "react";
 import PostContainer from "../Post/PostContainer";
-import SearchBar from "../SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Home = props => {
   return (
