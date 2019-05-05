@@ -43,13 +43,15 @@ class Carousel extends Component {
   render() {
     return (
       <CarouselWrapper>
-        <CarouselNavigator onClick={_ => this.navigate(LEFT)}>
-          {"<"}
-        </CarouselNavigator>
-        {this.state.images[0]}
-        <CarouselNavigator onClick={_ => this.navigate(RIGHT)}>
-          {">"}
-        </CarouselNavigator>
+        <ImageWrapper>{this.state.images[0]}</ImageWrapper>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <CarouselNavigator onClick={_ => this.navigate(LEFT)}>
+            {"<"}
+          </CarouselNavigator>
+          <CarouselNavigator onClick={_ => this.navigate(RIGHT)}>
+            {">"}
+          </CarouselNavigator>
+        </div>
       </CarouselWrapper>
     );
   }
@@ -60,7 +62,7 @@ export default Carousel;
 const CarouselWrapper = styled.div`
   //margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: no-wrap;
   justify-content: center;
   max-width: 300px;
@@ -78,6 +80,10 @@ const CarouselNavigator = styled.div`
   &:hover {
     background-color: gainsboro;
   }
+`;
+
+const ImageWrapper = styled.div`
+  height: 400px;
 `;
 
 // const CarouselImage = styled.img`
