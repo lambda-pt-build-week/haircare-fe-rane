@@ -75,4 +75,8 @@ const DetailWrapper = styled.div`
   width: 100%;
   flex-direction: row;
   margin: 15px auto;
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
