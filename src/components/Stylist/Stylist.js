@@ -42,6 +42,7 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, { fetchStylists } )(Stylist);
 
 const StylistInfo = styled.div`
+background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 100%);
   `;
 
 const StylistImages = styled.img`
