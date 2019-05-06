@@ -18,9 +18,9 @@ class Stylist extends Component {
         return (
           <div>
           <StylistImages key={stylist.id} src={stylist.profile_picture} />
-          <div>{stylist.stylist_name}</div>
-          <div>{stylist.location}</div>
-          <button>Book Now</button>
+            <StylistTextOne>{stylist.stylist_name}</StylistTextOne>
+            <StylistTextTwo>{stylist.location}</StylistTextTwo>
+            <StylistButton>Book Now</StylistButton>
           </div>
 
         )
@@ -48,7 +48,27 @@ padding: 0;
 background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 100%);
   `;
 
+const StylistTextOne = styled.div`
+  padding-top: 5px;
+`;
+
+const StylistTextTwo = styled.div`
+  padding-top: 5px;
+  padding-bottom: 5px;
+`;
+
 const StylistImages = styled.img`
   height: auto;
-  width: 15%;
+  width: 40%;
+  padding-top: 30px;
+`;
+
+const StylistButton = styled.button`
+  background: #3367D6;
+  color: white;
+  border: none;
+  height: 35px;
+  width: 20%;
+  border-radius: 23px;
+  cursor: pointer;
 `;
