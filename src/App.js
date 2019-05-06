@@ -39,7 +39,6 @@ class App extends Component {
         <Route path="/post" exact render={props => <PostDetail {...props} />} />
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/protected" component={Stylist} />
-        <Stylist />
       </div>
     );
   }
