@@ -6,6 +6,7 @@ export const FETCH_POST_FAILED = "FETCH_POST_FAILED";
 
 export const GET_POST = "GET_POST";
 export const SEARCH_POSTS = "SEARCH_POSTS";
+export const STOP_SEARCH = "STOP_SEARCH";
 
 //const UNSPLASH_API = "https://api.unsplash.com/";
 const HAIRCARE_API = "https://haircare.herokuapp.com/api/";
@@ -54,5 +55,11 @@ export const searchPosts = posts => {
   return {
     type: SEARCH_POSTS,
     payload: posts
+  };
+};
+
+export const stopSearch = () => {
+  return {
+    type: STOP_SEARCH
   };
 };

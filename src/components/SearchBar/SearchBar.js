@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import Fuse from "fuse.js";
 
-import { searchPosts } from "../../actions/postActions";
+import { searchPosts, fetchPosts, stopSearch } from "../../actions/postActions";
 
 class SearchBar extends Component {
   state = {
@@ -12,7 +12,9 @@ class SearchBar extends Component {
 
   onInputChange = e => {
     let { value } = e.target;
-    this.setState({ term: value }, () => this.doSearch());
+    this.setState({ term: value }, () => {
+      this.state.term === "" ? this.doCancel() : this.doSearch();
+    });
   };
 
   doSearch = e => {
@@ -20,11 +22,26 @@ class SearchBar extends Component {
       keys: ["description"]
     };
 
-    let fuse = new Fuse(this.props.posts, options);
+    //console.log(this.props.posts)
+
+    let posts = this.props.searching
+      ? this.props.searchResults
+      : this.props.posts;
+
+    console.log(posts);
+
+    let fuse = new Fuse(posts, options);
 
     e && e.preventDefault();
     this.props.searchPosts(fuse.search(this.state.term));
   };
+
+  doCancel = e => {
+    this.setState({ term: "" });
+    this.props.stopSearch();
+    //this.props.fetchPosts();
+  };
+
   render() {
     return (
       <SearchBarWrapper>
@@ -37,21 +54,27 @@ class SearchBar extends Component {
             onChange={event => this.onInputChange(event)}
           />
         </form>
-        {this.state.term && <CancelMe>X</CancelMe>}
+        {this.state.term && (
+          <CancelMe onClick={e => this.doCancel(e)}>X</CancelMe>
+        )}
       </SearchBarWrapper>
     );
   }
 }
 
-const mapStateToProps = ({ postReducer: { posts } }) => {
+const mapStateToProps = ({
+  postReducer: { posts, searching, searchResults }
+}) => {
   return {
-    posts
+    posts,
+    searching,
+    searchResults
   };
 };
 
 export default connect(
   mapStateToProps,
-  { searchPosts }
+  { searchPosts, fetchPosts, stopSearch }
 )(SearchBar);
 
 // Styles
@@ -64,6 +87,7 @@ const CancelMe = styled.span`
   border-radius: 50%;
   margin-left: -55px;
   align-self: center;
+  cursor: pointer;
 `;
 
 const SearchBarWrapper = styled.div`
