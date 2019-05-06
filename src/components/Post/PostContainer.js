@@ -26,11 +26,14 @@ class PostContainer extends Component {
   }
 
   render() {
+    let posts = this.props.searching
+      ? this.props.searchResults
+      : this.props.posts;
     return (
       <PostGrid>
         <Post imageURL={pompLogo} static />
-        {this.props.posts &&
-          this.props.posts.map(post => (
+        {posts &&
+          posts.map(post => (
             <Post
               key={post.id}
               id={post.id}
@@ -47,10 +50,18 @@ class PostContainer extends Component {
 }
 
 const mapStateToProps = ({ postReducer }) => {
-  const { posts, fetchingPosts, fetchError } = postReducer;
+  const {
+    posts,
+    fetchingPosts,
+    fetchError,
+    searching,
+    searchResults
+  } = postReducer;
   console.log(posts);
   return {
     posts,
+    searching,
+    searchResults,
     fetchingPosts,
     fetchError
   };
