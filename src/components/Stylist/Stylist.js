@@ -12,20 +12,20 @@ class Stylist extends Component {
    const { stylists = [] } = this.props
    {console.log(stylists)}
    return (
-     <div>
+     <StylistInfo>
       <h1>Schedule an appointment</h1>
       {stylists.map(stylist => {
         return (
-          <StylistInfo>
+          <div>
           <StylistImages key={stylist.id} src={stylist.profile_picture} />
           <div>{stylist.stylist_name}</div>
           <div>{stylist.location}</div>
           <button>Book Now</button>
-          </StylistInfo>
+          </div>
 
         )
       })}
-     </div>
+     </StylistInfo>
    )
  }
 
@@ -41,7 +41,10 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { fetchStylists } )(Stylist);
 
+
 const StylistInfo = styled.div`
+margin: 0;
+padding: 0;
 background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 100%);
   `;
 

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
+import styled from "styled-components";
 import axios from "axios";
-import { Route, withRouter } from "react-router-dom";
+import { Route, NavLink, withRouter } from "react-router-dom";
 import Home from "./components/Home/Home";
 import PostDetail from "./components/Post/PostDetail";
 import Stylist from "./components/Stylist/Stylist";
@@ -30,8 +31,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path="/" exact render={props => <Home {...props} />} />
-        <Route path="/post" render={props => <PostDetail {...props} />} />
+        <NavBar>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/login">Login</NavLink>
+        </NavBar>
+        <Route path="/" render={props => <Home {...props} />} />
+        <Route path="/post" exact render={props => <PostDetail {...props} />} />
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/protected" component={Stylist} />
         <Stylist />
@@ -44,3 +49,20 @@ export default connect(
   null,
   { fetchStylists }
 )(withRouter(App));
+
+const NavBar = styled.div`
+  margin: 0;
+  padding: 0;
+  height: 64px;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  a {
+    color: black;
+    text-decoration: none;
+    padding: 24px;
+    height: 16px;
+  }
+`;
