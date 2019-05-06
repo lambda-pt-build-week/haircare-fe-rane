@@ -47,8 +47,9 @@ const SearchBarWrapper = styled.div`
     font-size: 24px;
   }
   input {
+    margin: 10px auto;
     height: 30px;
-    width: 100%;
+    width: 90%;
     //width: 200px;
     border-radius: 10px;
     padding-left: 10px;

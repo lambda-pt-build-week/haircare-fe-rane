@@ -22,7 +22,7 @@ class PostDetail extends Component {
 
       return (
         <DetailWrapper>
-          <Carousel>{this.getImages(images)}</Carousel>
+          <Carousel images={this.getImages(images)} />
           <StylistData stylist={stylist} />
         </DetailWrapper>
       );
@@ -34,15 +34,16 @@ class PostDetail extends Component {
   getImages = images => {
     let result = [];
 
-    result.push(
-      <img
-        src={this.props.selectedPost.imageUrl}
-        alt={this.props.selectedPost.description}
-      />
-    );
+    result.push({
+      url: this.props.selectedPost.imageUrl,
+      desc: this.props.selectedPost.description
+    });
 
     images.forEach(image =>
-      result.push(<img src={image.imageUrl} alt={image.description} />)
+      result.push({
+        url: image.imageUrl,
+        desc: image.description
+      })
     );
 
     //console.log(result);
@@ -74,4 +75,8 @@ const DetailWrapper = styled.div`
   width: 100%;
   flex-direction: row;
   margin: 15px auto;
+  @media (max-width: 500px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
