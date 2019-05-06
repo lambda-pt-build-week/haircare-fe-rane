@@ -32,8 +32,8 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/login">Login</NavLink>
+          <NavLink exact to="/" activeClassName="activeNavButton">Home</NavLink>
+          <NavLink to="/login" activeClassName="activeNavButton">Login</NavLink>
         </NavBar>
         <Route path="/" render={props => <Home {...props} />} />
         <Route path="/post" exact render={props => <PostDetail {...props} />} />
@@ -64,5 +64,9 @@ const NavBar = styled.div`
     text-decoration: none;
     padding: 24px;
     height: 16px;
+  }
+  a.activeNavButton {
+    background-color: #3367D6;
+    color: white;
   }
 `;
