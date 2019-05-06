@@ -31,7 +31,7 @@ export const postReducer = (state = initialState, action) => {
       return { ...state, fetchingPosts: false, fetchError: action.payload };
     case GET_POST:
       const selectedPost = state.posts.find(post => post.id === action.payload);
-      return { ...state, selectedPost };
+      return { ...state, selectedPost, searching: false, searchResults: null };
     case SEARCH_POSTS:
       return { ...state, searchResults: action.payload, searching: true };
     case STOP_SEARCH:
