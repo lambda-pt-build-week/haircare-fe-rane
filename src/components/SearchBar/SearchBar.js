@@ -37,6 +37,7 @@ class SearchBar extends Component {
             onChange={event => this.onInputChange(event)}
           />
         </form>
+        {this.state.term && <CancelMe>X</CancelMe>}
       </SearchBarWrapper>
     );
   }
@@ -54,26 +55,39 @@ export default connect(
 )(SearchBar);
 
 // Styles
+
+const CancelMe = styled.span`
+  font-size: 12px;
+  background-color: grey;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  margin-left: -55px;
+  align-self: center;
+`;
+
 const SearchBarWrapper = styled.div`
-  //display: flex;
-  // align-items: center;
-  // justify-content: space-between;
-  width: 100%;
+  display: flex;
+  justify-contents: center;
+  width: 90%;
   max-width: 800px;
   margin: 25px auto;
+  //border: 2px solid pink;
 
   h1 {
     font-family: "Pacifico", cursive;
     margin-left: 10px;
     font-size: 24px;
   }
+  form {
+    width: 100%;
+    //margin: 0 10%;
+  }
   input {
     margin: 10px auto;
     height: 30px;
     width: 90%;
-    //width: 200px;
     border-radius: 10px;
     padding-left: 10px;
-    //text-align: center;
   }
 `;
