@@ -10,6 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { connect } from "react-redux";
 
 import { fetchStylists } from "./actions";
+import StylistContainer from './components/Stylist/Stylist';
 
 class App extends Component {
   state = {
@@ -33,6 +34,7 @@ class App extends Component {
         <Route path="/post" render={props => <PostDetail {...props} />} />
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/protected" component={Stylist} />
+        <Stylist />
       </div>
     );
   }
