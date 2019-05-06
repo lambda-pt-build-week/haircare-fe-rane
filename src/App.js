@@ -11,7 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { connect } from "react-redux";
 
 import { fetchStylists } from "./actions";
-import StylistContainer from './components/Stylist/Stylist';
+import StylistContainer from "./components/Stylist/Stylist";
 
 class App extends Component {
   state = {
@@ -32,11 +32,15 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar>
-          <NavLink exact to="/" activeClassName="activeNavButton">Home</NavLink>
-          <NavLink to="/login" activeClassName="activeNavButton">Login</NavLink>
+          <NavLink exact to="/" activeClassName="activeNavButton">
+            Home
+          </NavLink>
+          <NavLink to="/login" activeClassName="activeNavButton">
+            Login
+          </NavLink>
         </NavBar>
-        <Route path="/" render={props => <Home {...props} />} />
-        <Route path="/post" exact render={props => <PostDetail {...props} />} />
+        <Route path="/" exact render={props => <Home {...props} />} />
+        <Route path="/post" render={props => <PostDetail {...props} />} />
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/protected" component={Stylist} />
       </div>
@@ -65,7 +69,7 @@ const NavBar = styled.div`
     height: 16px;
   }
   a.activeNavButton {
-    background-color: #3367D6;
+    background-color: #3367d6;
     color: white;
   }
 `;
