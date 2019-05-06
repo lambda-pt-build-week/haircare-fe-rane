@@ -43,13 +43,15 @@ class Carousel extends Component {
   render() {
     return (
       <CarouselWrapper>
-        <CarouselNavigator onClick={_ => this.navigate(LEFT)}>
-          {"<"}
-        </CarouselNavigator>
-        {this.state.images[0]}
-        <CarouselNavigator onClick={_ => this.navigate(RIGHT)}>
-          {">"}
-        </CarouselNavigator>
+        <ImageWrapper>{this.state.images[0]}</ImageWrapper>
+        <NavWrapper>
+          <CarouselNavigator onClick={_ => this.navigate(LEFT)}>
+            <span>{"<"}</span>
+          </CarouselNavigator>
+          <CarouselNavigator onClick={_ => this.navigate(RIGHT)}>
+            <span>{">"}</span>
+          </CarouselNavigator>
+        </NavWrapper>
       </CarouselWrapper>
     );
   }
@@ -60,7 +62,7 @@ export default Carousel;
 const CarouselWrapper = styled.div`
   //margin: 0 auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: no-wrap;
   justify-content: center;
   max-width: 300px;
@@ -70,14 +72,28 @@ const CarouselWrapper = styled.div`
 
 const CarouselNavigator = styled.div`
   align-self: center;
+  align-items: center;
+  vertical-align: center;
   font-size: 24px;
-  background-color: PeachPuff;
-  border-radius: 50%;
-  padding: 20px;
   cursor: pointer;
-  &:hover {
-    background-color: gainsboro;
-  }
+  span {
+    padding: 5% 0;
+`;
+
+const ImageWrapper = styled.div`
+  height: 400px;
+  display: flex;
+  //flex-direction: column;
+  //align-items: center;
+`;
+
+const NavWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: -225px;
+  margin-left: -25px;
+  width: 350px;
 `;
 
 // const CarouselImage = styled.img`

@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import Fuse from "fuse.js";
+
+import { searchPosts } from "../../actions/postActions";
 
 class SearchBar extends Component {
   state = {
@@ -8,17 +12,23 @@ class SearchBar extends Component {
 
   onInputChange = e => {
     let { value } = e.target;
-    this.setState(state => ({ term: value }));
+    this.setState({ term: value }, () => this.doSearch());
   };
 
-  onSearch = e => {
-    e.preventDefault();
-    console.log("searching");
+  doSearch = e => {
+    const options = {
+      keys: ["description"]
+    };
+
+    let fuse = new Fuse(this.props.posts, options);
+
+    e && e.preventDefault();
+    this.props.searchPosts(fuse.search(this.state.term));
   };
   render() {
     return (
       <SearchBarWrapper>
-        <form onSubmit={event => this.onSearch(event)}>
+        <form onSubmit={event => this.doSearch(event)}>
           <input
             id="searchTerm"
             type={"text"}
@@ -31,6 +41,17 @@ class SearchBar extends Component {
     );
   }
 }
+
+const mapStateToProps = ({ postReducer: { posts } }) => {
+  return {
+    posts
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { searchPosts }
+)(SearchBar);
 
 // Styles
 const SearchBarWrapper = styled.div`
@@ -56,5 +77,3 @@ const SearchBarWrapper = styled.div`
     //text-align: center;
   }
 `;
-
-export default SearchBar;
