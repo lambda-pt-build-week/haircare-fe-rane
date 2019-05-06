@@ -13,12 +13,14 @@ class Stylist extends Component {
    {console.log(stylists)}
    return (
      <div>
+      <h1>Schedule an appointment</h1>
       {stylists.map(stylist => {
         return (
           <StylistInfo>
           <StylistImages key={stylist.id} src={stylist.profile_picture} />
           <div>{stylist.stylist_name}</div>
           <div>{stylist.location}</div>
+          <button>Book Now</button>
           </StylistInfo>
 
         )
