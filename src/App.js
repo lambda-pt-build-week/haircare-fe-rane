@@ -36,9 +36,13 @@ class App extends Component {
           <NavLink exact to="/" activeClassName="activeNavButton">
             Home
           </NavLink>
+            <NavLink exact to="/protected" activeClassName="activeNavButton">
+                Stylists
+            </NavLink>
           {!localStorage.getItem(this.state.jwtToken) && (
             <a
               href="https://haircare.herokuapp.com/auth/google"
+              style={{ alignSelf: "flex-end"}}
               //activeClassName="activeNavButton"
             >
               <img src={GoogleBtn} alt="Login with Google" />
@@ -67,7 +71,7 @@ const NavBar = styled.div`
   //width: 90%;
   list-style: none;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   a {
