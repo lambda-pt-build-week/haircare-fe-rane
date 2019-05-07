@@ -1,34 +1,42 @@
-import React, { Component } from "react";
-import "./App.css";
-import styled from "styled-components";
-import axios from "axios";
-import { Route, NavLink, withRouter } from "react-router-dom";
-import Home from "./components/Home/Home";
-import PostDetail from "./components/Post/PostDetail";
-import Stylist from "./components/Stylist/Stylist";
-import Login from "./components/Login/Login";
-import PrivateRoute from "./components/PrivateRoute";
-import { connect } from "react-redux";
+import React, { Component } from 'react'
+import './App.css'
+import styled from 'styled-components'
+import axios from 'axios'
+import { Route, NavLink, withRouter } from 'react-router-dom'
+import Home from './components/Home/Home'
+import PostDetail from './components/Post/PostDetail'
+import Stylist from './components/Stylist/Stylist'
+import Login from './components/Login/Login'
+import PrivateRoute from './components/PrivateRoute'
+import { connect } from 'react-redux'
 
-import GoogleBtn from "./assets/btn_google_signin_light_normal_web.png";
-import { fetchStylists } from "./actions";
-import StylistContainer from "./components/Stylist/Stylist";
+import GoogleBtn from './assets/btn_google_signin_light_normal_web.png'
+import { fetchStylists } from './actions'
+import StylistContainer from './components/Stylist/Stylist'
 
 class App extends Component {
   state = {
-    jwtToken: "jwtToken",
+    jwtToken: 'jwtToken',
       loggedIn: false
-  };
+  }
 
   componentDidMount() {
-    console.log(this.props.location.pathname);
-    if (this.props.location.pathname != null) {
-      localStorage.setItem("jwtToken", this.props.location.pathname);
-      localStorage.getItem(this.state.jwtToken);
-      this.setState({loggedIn: true});
+    console.log(this.props.location.hash.split`#/token?=`.join``)
+    let e = localStorage.getItem('jwtToken')
+    if (e == '') {
+      console.log('blank jwt')
+      localStorage.removeItem('jwtToken')
+        this.setState({ loggedIn: false })
+    }
+    if (this.props.location.hash != '') {
+      localStorage.setItem(
+        'jwtToken',
+        this.props.location.hash.split`#/token?=`.join``
+      )
+        this.setState({ loggedIn: true })
     }
 
-    this.props.fetchStylists();
+    this.props.fetchStylists()
   }
 
   render() {
@@ -38,13 +46,13 @@ class App extends Component {
           <NavLink exact to="/" activeClassName="activeNavButton">
             Home
           </NavLink>
-            <NavLink exact to="/protected" activeClassName="activeNavButton">
-                Stylists
-            </NavLink>
+          <NavLink exact to="/protected" activeClassName="activeNavButton">
+            Stylists
+          </NavLink>
           {!this.state.loggedIn && (
             <a
               href="https://haircare.herokuapp.com/auth/google"
-              style={{ alignSelf: "flex-end"}}
+              style={{ alignSelf: 'flex-end' }}
               //activeClassName="activeNavButton"
             >
               <img src={GoogleBtn} alt="Login with Google" />
@@ -56,14 +64,14 @@ class App extends Component {
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/protected" component={Stylist} />
       </div>
-    );
+    )
   }
 }
 
 export default connect(
   null,
   { fetchStylists }
-)(withRouter(App));
+)(withRouter(App))
 
 const NavBar = styled.div`
   margin: 0 auto;
@@ -87,4 +95,4 @@ const NavBar = styled.div`
     background-color: grey;
     color: white;
   }
-`;
+`
