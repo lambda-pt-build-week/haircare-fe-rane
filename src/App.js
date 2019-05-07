@@ -21,12 +21,14 @@ class App extends Component {
 
   componentDidMount() {
     console.log(this.props.location.hash.split`#/token?=`.join``)
-    if (this.props.location.hash != null) {
+    if (
+      this.props.location.hash != null &&
+      localStorage.getItem(this.state.jwtToken) == null
+    ) {
       localStorage.setItem(
         'jwtToken',
         this.props.location.hash.split`#/token?=`.join``
       )
-      localStorage.getItem(this.state.jwtToken)
     }
 
     this.props.fetchStylists()
