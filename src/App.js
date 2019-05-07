@@ -16,7 +16,8 @@ import StylistContainer from "./components/Stylist/Stylist";
 
 class App extends Component {
   state = {
-    jwtToken: "jwtToken"
+    jwtToken: "jwtToken",
+      loggedIn: false
   };
 
   componentDidMount() {
@@ -24,6 +25,7 @@ class App extends Component {
     if (this.props.location.pathname != null) {
       localStorage.setItem("jwtToken", this.props.location.pathname);
       localStorage.getItem(this.state.jwtToken);
+      this.setState({loggedIn: true});
     }
 
     this.props.fetchStylists();
@@ -39,7 +41,7 @@ class App extends Component {
             <NavLink exact to="/protected" activeClassName="activeNavButton">
                 Stylists
             </NavLink>
-          {!localStorage.getItem(this.state.jwtToken) && (
+          {!this.state.loggedIn && (
             <a
               href="https://haircare.herokuapp.com/auth/google"
               style={{ alignSelf: "flex-end"}}
