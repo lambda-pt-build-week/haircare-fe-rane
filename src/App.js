@@ -46,7 +46,7 @@ class App extends Component {
           <NavLink exact to="/protected" activeClassName="activeNavButton">
             Stylists
           </NavLink>
-          {!this.state.jwtToken !== '' && (
+          {!this.state.jwtToken == '' && (
             <a
               href="https://haircare.herokuapp.com/auth/google"
               style={{ alignSelf: 'flex-end' }}
