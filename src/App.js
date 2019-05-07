@@ -16,8 +16,10 @@ import StylistContainer from './components/Stylist/Stylist'
 
 class App extends Component {
   state = {
+
     jwtToken: 'jwtToken',
       loggedIn: false
+
   }
 
   componentDidMount() {
@@ -35,7 +37,7 @@ class App extends Component {
       )
         this.setState({ loggedIn: true })
     }
-
+    this.setState({ jwtToken: localStorage.getItem('jwtToken') })
     this.props.fetchStylists()
   }
 
