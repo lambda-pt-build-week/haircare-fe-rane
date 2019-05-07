@@ -21,10 +21,9 @@ class App extends Component {
 
   componentDidMount() {
     console.log(this.props.location.hash.split`#/token?=`.join``)
-    if (
-      this.props.location.hash != null &&
-      localStorage.getItem(this.state.jwtToken) == null
-    ) {
+    if (localStorage.getItem(this.state.jwtToken) == '')
+      localStorage.removeItem('jwtToken')
+    if (this.props.location.hash != null) {
       localStorage.setItem(
         'jwtToken',
         this.props.location.hash.split`#/token?=`.join``
