@@ -21,7 +21,7 @@ class App extends Component {
 
   componentDidMount() {
     console.log(this.props.location.hash.split`#/token?=`.join``)
-    if (this.props.location.pathname != null) {
+    if (this.props.location.hash != null) {
       localStorage.setItem(
         'jwtToken',
         this.props.location.hash.split`#/token?=`.join``
@@ -39,13 +39,13 @@ class App extends Component {
           <NavLink exact to="/" activeClassName="activeNavButton">
             Home
           </NavLink>
-            <NavLink exact to="/protected" activeClassName="activeNavButton">
-                Stylists
-            </NavLink>
+          <NavLink exact to="/protected" activeClassName="activeNavButton">
+            Stylists
+          </NavLink>
           {!localStorage.getItem(this.state.jwtToken) && (
             <a
               href="https://haircare.herokuapp.com/auth/google"
-              style={{ alignSelf: "flex-end"}}
+              style={{ alignSelf: 'flex-end' }}
               //activeClassName="activeNavButton"
             >
               <img src={GoogleBtn} alt="Login with Google" />
