@@ -21,9 +21,12 @@ class App extends Component {
 
   componentDidMount() {
     console.log(this.props.location.hash.split`#/token?=`.join``)
-    if (localStorage.getItem(this.state.jwtToken) == '')
+    let e = localStorage.getItem('jwtToken')
+    if (e == '') {
+      console.log('blank jwt')
       localStorage.removeItem('jwtToken')
-    if (this.props.location.hash != null) {
+    }
+    if (this.props.location.hash != '') {
       localStorage.setItem(
         'jwtToken',
         this.props.location.hash.split`#/token?=`.join``
