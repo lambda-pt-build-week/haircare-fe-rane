@@ -16,7 +16,6 @@ class PostContainer extends Component {
   };
   componentDidMount() {
     if (
-      process.env.REACT_APP_UNSPLASH_ACCESS_KEY !== undefined &&
       !this.props.posts
     ) {
       this.props.fetchPosts();
